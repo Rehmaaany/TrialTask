@@ -1,11 +1,14 @@
 /**
  * useChartData Hook
- * Handles chart data fetching and time filter management
+ * Manages chart data state and time filter selection
+ * Delegates data generation and processing to utility functions
  */
 
 import { useState, useCallback, useMemo } from 'react';
 import { ChartDataPoint, TimeFilter } from '../types/trading.types';
-import { MOCK_CHART_DATA, TIME_FILTERS } from '../constants/trading.constants';
+import { TIME_FILTERS } from '../constants/trading.constants';
+import { generateChartDataForTimeframe } from '../utils/chart-data-generator.utils';
+import { normalizeChartData } from '../utils/chart.utils';
 
 interface UseChartDataReturn {
   chartData: ChartDataPoint[];
@@ -18,19 +21,19 @@ interface UseChartDataReturn {
   normalizedData: { x: number; y: number }[];
 }
 
+const DEFAULT_FILTER_ID = '2'; // 15m
+const LOADING_DELAY_MS = 200;
+
 export function useChartData(): UseChartDataReturn {
-  // Default to 15m filter (id: '2')
-  const [activeFilter, setActiveFilter] = useState<string>('2');
+  const [activeFilter, setActiveFilter] = useState<string>(DEFAULT_FILTER_ID);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [chartData] = useState<ChartDataPoint[]>(MOCK_CHART_DATA);
 
-  const handleFilterChange = useCallback((filterId: string) => {
-    setIsLoading(true);
-    setActiveFilter(filterId);
-    // Simulate API call delay
-    setTimeout(() => setIsLoading(false), 300);
-  }, []);
+  // Generate chart data when filter changes
+  const chartData = useMemo<ChartDataPoint[]>(() => {
+    return generateChartDataForTimeframe(activeFilter);
+  }, [activeFilter]);
 
+  // Calculate price range for normalization
   const { minPrice, maxPrice } = useMemo(() => {
     const prices = chartData.map(point => point.price);
     return {
@@ -39,13 +42,23 @@ export function useChartData(): UseChartDataReturn {
     };
   }, [chartData]);
 
+  // Normalize data to 0-100 range for chart rendering
   const normalizedData = useMemo(() => {
-    const priceRange = maxPrice - minPrice;
-    return chartData.map((point, index) => ({
-      x: (index / (chartData.length - 1)) * 100,
-      y: ((point.price - minPrice) / priceRange) * 80 + 10,
-    }));
-  }, [chartData, minPrice, maxPrice]);
+    return normalizeChartData(chartData);
+  }, [chartData]);
+
+  // Handle filter selection with loading state
+  const handleFilterChange = useCallback((filterId: string) => {
+    setIsLoading(true);
+    setActiveFilter(filterId);
+    
+    // Simulate network delay for realistic UX
+    const timeoutId = setTimeout(() => {
+      setIsLoading(false);
+    }, LOADING_DELAY_MS);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return {
     chartData,

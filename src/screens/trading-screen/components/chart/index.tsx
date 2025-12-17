@@ -1,82 +1,122 @@
 /**
  * Chart Component
- * Displays price chart with connected line visualization
+ * Renders an interactive price chart using SVG
+ * Uses utility functions for path generation and data processing
  */
 
-import React from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import React, { useMemo } from 'react';
+import { View, Text } from 'react-native';
+import Svg, { Path, Defs, LinearGradient, Stop, Circle } from 'react-native-svg';
 import { styles } from './styles';
+import { generateChartPaths, CHART_CONFIG } from '../../../../utils/chart.utils';
 
 interface ChartProps {
   normalizedData: { x: number; y: number }[];
   isLoading: boolean;
 }
 
-const CHART_WIDTH = Dimensions.get('window').width - 32;
-const CHART_HEIGHT = 160;
+// Gradient configuration for area fill
+const GRADIENT_STOPS = [
+  { offset: '0%', opacity: 0.25 },
+  { offset: '60%', opacity: 0.08 },
+  { offset: '100%', opacity: 0 },
+] as const;
 
 export function Chart({ normalizedData, isLoading }: ChartProps) {
+  // Generate SVG paths from normalized data
+  const { linePath, areaPath, lastPoint } = useMemo(
+    () => generateChartPaths(normalizedData),
+    [normalizedData]
+  );
+
   if (isLoading) {
-    return (
-      <View style={[styles.container, styles.loadingContainer]}>
-        <Text style={styles.loadingText}>Loading...</Text>
-      </View>
-    );
+    return <LoadingState />;
   }
-
-  // Convert percentage to pixel positions
-  const points = normalizedData.map(point => ({
-    x: (point.x / 100) * CHART_WIDTH,
-    y: CHART_HEIGHT - (point.y / 100) * CHART_HEIGHT,
-  }));
-
-  const lastPoint = points[points.length - 1];
 
   return (
     <View style={styles.container}>
-      <View style={styles.chartArea}>
-        {/* Draw connected line segments */}
-        {points.map((point, index) => {
-          const nextPoint = points[index + 1];
-          if (!nextPoint) return null;
-
-          const dx = nextPoint.x - point.x;
-          const dy = nextPoint.y - point.y;
-          const length = Math.sqrt(dx * dx + dy * dy);
-          const angle = Math.atan2(dy, dx) * (180 / Math.PI);
-
-          return (
-            <View
-              key={index}
-              style={[
-                styles.chartLine,
-                {
-                  position: 'absolute',
-                  left: point.x,
-                  top: point.y - 1,
-                  width: length + 1,
-                  transform: [{ rotate: `${angle}deg` }],
-                  transformOrigin: 'left center',
-                },
-              ]}
-            />
-          );
-        })}
-
-        {/* Highlight dot at the last point */}
-        {lastPoint && (
-          <View
-            style={[
-              styles.highlightDot,
-              {
-                position: 'absolute',
-                left: lastPoint.x - 7,
-                top: lastPoint.y - 7,
-              },
-            ]}
-          />
-        )}
-      </View>
+      <Svg width={CHART_CONFIG.width} height={CHART_CONFIG.height}>
+        <GradientDefinition />
+        <AreaFill path={areaPath} />
+        <ChartLine path={linePath} />
+        {lastPoint && <EndpointIndicator point={lastPoint} />}
+      </Svg>
     </View>
+  );
+}
+
+// Sub-components for better organization
+
+function LoadingState() {
+  return (
+    <View style={[styles.container, styles.loadingContainer]}>
+      <Text style={styles.loadingText}>Loading...</Text>
+    </View>
+  );
+}
+
+function GradientDefinition() {
+  return (
+    <Defs>
+      <LinearGradient id="chartAreaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        {GRADIENT_STOPS.map(({ offset, opacity }) => (
+          <Stop
+            key={offset}
+            offset={offset}
+            stopColor={CHART_CONFIG.lineColor}
+            stopOpacity={opacity}
+          />
+        ))}
+      </LinearGradient>
+    </Defs>
+  );
+}
+
+interface PathProps {
+  path: string;
+}
+
+function AreaFill({ path }: PathProps) {
+  return <Path d={path} fill="url(#chartAreaGradient)" />;
+}
+
+function ChartLine({ path }: PathProps) {
+  return (
+    <Path
+      d={path}
+      stroke={CHART_CONFIG.lineColor}
+      strokeWidth={CHART_CONFIG.lineWidth}
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  );
+}
+
+interface EndpointIndicatorProps {
+  point: { x: number; y: number };
+}
+
+function EndpointIndicator({ point }: EndpointIndicatorProps) {
+  return (
+    <>
+      {/* Outer glow effect */}
+      <Circle
+        cx={point.x}
+        cy={point.y}
+        r={CHART_CONFIG.dotGlowRadius}
+        fill={CHART_CONFIG.lineColor}
+        opacity={0.3}
+      />
+      {/* Inner dot with border */}
+      <Circle
+        cx={point.x}
+        cy={point.y}
+        r={CHART_CONFIG.dotRadius}
+        fill={CHART_CONFIG.lineColor}
+        stroke="#FFFFFF"
+        strokeWidth={2}
+      />
+    </>
   );
 }

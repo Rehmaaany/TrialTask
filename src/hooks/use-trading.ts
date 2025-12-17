@@ -19,6 +19,7 @@ interface UseTradingReturn {
   handleAmountChange: (amount: string) => void;
   handleSliderChange: (value: number) => void;
   handleLeverageChange: (leverage: string) => void;
+  handleAssetChange: (asset: string) => void;
   handleSubmitOrder: () => void;
 }
 
@@ -58,8 +59,11 @@ export function useTrading(): UseTradingReturn {
     setTradeOrder(prev => ({ ...prev, leverage }));
   }, []);
 
+  const handleAssetChange = useCallback((asset: string) => {
+    setTradeOrder(prev => ({ ...prev, asset }));
+  }, []);
+
   const handleSubmitOrder = useCallback(() => {
-    // Handle order submission logic here
     console.log('Submitting order:', tradeOrder);
   }, [tradeOrder]);
 
@@ -75,7 +79,7 @@ export function useTrading(): UseTradingReturn {
     handleAmountChange,
     handleSliderChange,
     handleLeverageChange,
+    handleAssetChange,
     handleSubmitOrder,
   };
 }
-

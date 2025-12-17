@@ -47,6 +47,8 @@ export function TradingScreen() {
     handleOrderTypeChange,
     handleAmountChange,
     handleSliderChange,
+    handleLeverageChange,
+    handleAssetChange,
 
     // Positions data
     positions,
@@ -59,7 +61,6 @@ export function TradingScreen() {
     handlePositionPress,
     handleCloseModal,
     handleCancelPosition,
-    handleCancelAllPositions,
     toggleHideOtherPairs,
 
     // Navigation
@@ -105,6 +106,8 @@ export function TradingScreen() {
             onOrderTypeChange={handleOrderTypeChange}
             onAmountChange={handleAmountChange}
             onSliderChange={handleSliderChange}
+            onLeverageChange={handleLeverageChange}
+            onAssetChange={handleAssetChange}
           />
         </View>
 
@@ -118,7 +121,6 @@ export function TradingScreen() {
             onTabChange={handleTabChange}
             onPositionPress={handlePositionPress}
             onToggleHideOtherPairs={toggleHideOtherPairs}
-            onCancel={handleCancelAllPositions}
           />
         </View>
       </ScrollView>
@@ -133,4 +135,3 @@ export function TradingScreen() {
     </SafeAreaView>
   );
 }
-

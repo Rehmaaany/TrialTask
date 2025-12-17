@@ -15,12 +15,10 @@ export function useTradingScreen() {
   const trading = useTrading();
 
   const handleGoBack = useCallback(() => {
-    // Handle navigation back
     console.log('Navigate back');
   }, []);
 
   const handleOpenSettings = useCallback(() => {
-    // Handle settings navigation
     console.log('Open settings');
   }, []);
 
@@ -41,4 +39,3 @@ export function useTradingScreen() {
 }
 
 export type TradingScreenState = ReturnType<typeof useTradingScreen>;
-

@@ -61,6 +61,51 @@ export const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 9,
   },
+  // Dropdown styles
+  dropdownOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+  },
+  leverageDropdown: {
+    backgroundColor: '#1E2A3B',
+    borderRadius: 8,
+    paddingVertical: 4,
+    minWidth: 100,
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+  },
+  assetDropdown: {
+    backgroundColor: '#1E2A3B',
+    borderRadius: 8,
+    paddingVertical: 4,
+    minWidth: 100,
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+  },
+  dropdownItem: {
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+  },
+  dropdownItemSelected: {
+    backgroundColor: '#2A3A4B',
+  },
+  dropdownItemText: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: '500',
+    textAlign: 'center',
+  },
+  dropdownSeparator: {
+    height: 1,
+    backgroundColor: '#2A3A4B',
+    marginHorizontal: 8,
+  },
   orderTypeRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -99,6 +144,9 @@ export const styles = StyleSheet.create({
   },
   inputContainer: {
     marginTop: 10,
+  },
+  inputWrapper: {
+    flexDirection: 'row',
   },
   sliderContainer: {
     marginTop: 4,

@@ -6,6 +6,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
+import { ArrowBackIcon, WalletIcon } from '../icons/index';
 
 interface HeaderProps {
   title: string;
@@ -28,7 +29,7 @@ export function Header({
         accessibilityLabel="Go back"
         accessibilityRole="button"
       >
-        <Text style={styles.backArrow}>←</Text>
+        <ArrowBackIcon size={24} color="#FFFFFF" />
       </TouchableOpacity>
 
       <View style={styles.titleContainer}>
@@ -43,10 +44,10 @@ export function Header({
       <TouchableOpacity
         style={styles.rightButton}
         onPress={onSettingsPress}
-        accessibilityLabel="Settings"
+        accessibilityLabel="Wallet"
         accessibilityRole="button"
       >
-        <Text style={styles.settingsIcon}>⊞</Text>
+        <WalletIcon size={24} color="#FFFFFF" />
       </TouchableOpacity>
     </View>
   );

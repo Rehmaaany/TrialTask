@@ -72,4 +72,18 @@ export const styles = StyleSheet.create({
     color: COLORS.textSecondary,
     fontSize: 13,
   },
+  cancelButton: {
+    backgroundColor: '#F6B93B',
+    borderRadius: 8,
+    paddingVertical: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 16,
+    marginBottom: 8,
+  },
+  cancelButtonText: {
+    color: '#1A1D2E',
+    fontSize: 15,
+    fontWeight: '600',
+  },
 });

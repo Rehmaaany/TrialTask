@@ -3,7 +3,6 @@
  */
 
 import { StyleSheet } from 'react-native';
-import { COLORS } from '../../../../constants/trading.constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,100 +12,93 @@ export const styles = StyleSheet.create({
   buttonsRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    justifyContent: 'space-between',
+  },
+  leftButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 0,
   },
   buyButton: {
-    flex: 1,
-    paddingVertical: 12,
-    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 26,
+    borderTopLeftRadius: 8,
+    borderBottomLeftRadius: 8,
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  buyButtonActive: {
-    backgroundColor: '#F0B90B',
-  },
-  buyButtonInactive: {
-    backgroundColor: '#1E2A3B',
   },
   sellButton: {
-    flex: 1,
-    paddingVertical: 12,
-    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 26,
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  sellButtonActive: {
-    backgroundColor: '#F0B90B',
-  },
-  sellButtonInactive: {
-    backgroundColor: '#1E2A3B',
-  },
   buttonText: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: '600',
-  },
-  buttonTextActive: {
-    color: '#000000',
-  },
-  buttonTextInactive: {
-    color: '#6B7280',
   },
   leverageButton: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#1E2A3B',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 14,
     borderRadius: 8,
-    gap: 6,
+    gap: 5,
   },
   leverageText: {
-    color: COLORS.textPrimary,
-    fontSize: 14,
+    color: '#FFFFFF',
+    fontSize: 13,
     fontWeight: '600',
   },
   leverageIcon: {
-    color: COLORS.textPrimary,
-    fontSize: 10,
+    color: '#FFFFFF',
+    fontSize: 9,
   },
   orderTypeRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 16,
+    marginTop: 14,
   },
   orderTypeTabs: {
     flexDirection: 'row',
-    gap: 16,
+    gap: 14,
   },
   orderTypeTab: {
     paddingVertical: 4,
   },
   orderTypeText: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: '600',
   },
   activeOrderType: {
-    color: COLORS.textPrimary,
+    color: '#FFFFFF',
   },
   inactiveOrderType: {
-    color: COLORS.textSecondary,
+    color: '#6B7280',
   },
   balanceContainer: {
     alignItems: 'flex-end',
   },
   availableLabel: {
-    fontSize: 11,
-    color: COLORS.textSecondary,
+    fontSize: 10,
+    color: '#6B7280',
   },
   balanceAmount: {
-    fontSize: 14,
-    color: COLORS.textPrimary,
+    fontSize: 13,
+    color: '#FFFFFF',
     fontWeight: '600',
     marginTop: 2,
   },
   inputContainer: {
-    marginTop: 12,
+    marginTop: 10,
   },
   sliderContainer: {
     marginTop: 4,

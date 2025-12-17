@@ -34,6 +34,9 @@ export function PositionCard({
     isProfit,
   } = position;
 
+  // Remove slash from pair for display
+  const displayPair = pair.replace('/', '');
+
   return (
     <TouchableOpacity
       style={styles.container}
@@ -45,7 +48,7 @@ export function PositionCard({
         <View style={styles.cryptoIcon}>
           <Text style={styles.cryptoIconText}>₿</Text>
         </View>
-        <Text style={styles.pairText}>{pair}</Text>
+        <Text style={styles.pairText}>{displayPair}</Text>
         <View style={[styles.badge, type === 'Long' ? styles.longBadge : styles.shortBadge]}>
           <Text style={styles.badgeText}>{type}</Text>
         </View>
@@ -90,4 +93,3 @@ export function PositionCard({
     </TouchableOpacity>
   );
 }
-

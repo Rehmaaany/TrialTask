@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     left: 8,
     height: 2,
-    backgroundColor: COLORS.primary,
+    backgroundColor: '#F0B90B',
     top: 11,
   },
   dotsContainer: {
@@ -48,11 +48,11 @@ export const styles = StyleSheet.create({
     borderColor: COLORS.border,
   },
   activeDot: {
-    backgroundColor: COLORS.primary,
-    borderColor: COLORS.primary,
+    backgroundColor: '#F0B90B',
+    borderColor: '#F0B90B',
   },
   filledDot: {
-    backgroundColor: COLORS.primary,
-    borderColor: COLORS.primary,
+    backgroundColor: '#F0B90B',
+    borderColor: '#F0B90B',
   },
 });

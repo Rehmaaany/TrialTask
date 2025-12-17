@@ -43,7 +43,7 @@ export function useChartData(): UseChartDataReturn {
     const priceRange = maxPrice - minPrice;
     return chartData.map((point, index) => ({
       x: (index / (chartData.length - 1)) * 100,
-      y: ((point.price - minPrice) / priceRange) * 80 + 10, // Add padding
+      y: ((point.price - minPrice) / priceRange) * 80 + 10,
     }));
   }, [chartData, minPrice, maxPrice]);
 

@@ -37,42 +37,46 @@ export function TradePanel({
     <View style={styles.container}>
       {/* Buy/Sell Buttons + Leverage */}
       <View style={styles.buttonsRow}>
-        <TouchableOpacity
-          style={[
-            styles.buyButton,
-            isBuyActive ? styles.buyButtonActive : styles.buyButtonInactive,
-          ]}
-          onPress={() => onTradeTypeChange('buy')}
-          activeOpacity={0.8}
-        >
-          <Text
+        {/* Buy and Sell buttons on the left */}
+        <View style={styles.leftButtons}>
+          <TouchableOpacity
             style={[
-              styles.buttonText,
-              isBuyActive ? styles.buttonTextActive : styles.buttonTextInactive,
+              styles.buyButton,
+              { backgroundColor: isBuyActive ? '#F0B90B' : '#1E2A3B' },
             ]}
+            onPress={() => onTradeTypeChange('buy')}
+            activeOpacity={0.8}
           >
-            Buy
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={[
+                styles.buttonText,
+                { color: isBuyActive ? '#000000' : '#6B7280' },
+              ]}
+            >
+              Buy
+            </Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={[
-            styles.sellButton,
-            !isBuyActive ? styles.sellButtonActive : styles.sellButtonInactive,
-          ]}
-          onPress={() => onTradeTypeChange('sell')}
-          activeOpacity={0.8}
-        >
-          <Text
+          <TouchableOpacity
             style={[
-              styles.buttonText,
-              !isBuyActive ? styles.buttonTextActive : styles.buttonTextInactive,
+              styles.sellButton,
+              { backgroundColor: !isBuyActive ? '#F0B90B' : '#1E2A3B' },
             ]}
+            onPress={() => onTradeTypeChange('sell')}
+            activeOpacity={0.8}
           >
-            Sell
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={[
+                styles.buttonText,
+                { color: !isBuyActive ? '#000000' : '#6B7280' },
+              ]}
+            >
+              Sell
+            </Text>
+          </TouchableOpacity>
+        </View>
 
+        {/* Leverage button on the right */}
         <TouchableOpacity style={styles.leverageButton} onPress={onLeveragePress}>
           <Text style={styles.leverageText}>{tradeOrder.leverage}</Text>
           <Text style={styles.leverageIcon}>▼</Text>

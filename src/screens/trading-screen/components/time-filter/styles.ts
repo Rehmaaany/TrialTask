@@ -9,31 +9,31 @@ export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'center',
-    gap: 8,
-    paddingVertical: 14,
+    gap: 6,
+    paddingVertical: 12,
     paddingHorizontal: 16,
   },
   filterButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 20,
-    borderRadius: 20,
-    minWidth: 50,
+    paddingVertical: 7,
+    paddingHorizontal: 16,
+    borderRadius: 16,
+    minWidth: 42,
     alignItems: 'center',
   },
   activeFilter: {
-    backgroundColor: '#F0B90B',
+    backgroundColor: '#00D26A',
   },
   inactiveFilter: {
     backgroundColor: 'transparent',
   },
   filterText: {
-    fontSize: 14,
-    fontWeight: '600',
+    fontSize: 13,
+    fontWeight: '500',
   },
   activeText: {
-    color: '#000000',
+    color: '#FFFFFF',
   },
   inactiveText: {
-    color: COLORS.textSecondary,
+    color: '#6B7280',
   },
 });

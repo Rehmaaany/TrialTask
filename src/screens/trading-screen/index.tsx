@@ -59,6 +59,7 @@ export function TradingScreen() {
     handlePositionPress,
     handleCloseModal,
     handleCancelPosition,
+    handleCancelAllPositions,
     toggleHideOtherPairs,
 
     // Navigation
@@ -117,6 +118,7 @@ export function TradingScreen() {
             onTabChange={handleTabChange}
             onPositionPress={handlePositionPress}
             onToggleHideOtherPairs={toggleHideOtherPairs}
+            onCancel={handleCancelAllPositions}
           />
         </View>
       </ScrollView>

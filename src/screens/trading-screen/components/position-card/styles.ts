@@ -15,12 +15,12 @@ export const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 12,
   },
   cryptoIcon: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
     backgroundColor: '#F7931A',
     alignItems: 'center',
     justifyContent: 'center',
@@ -28,41 +28,41 @@ export const styles = StyleSheet.create({
   },
   cryptoIconText: {
     color: COLORS.textPrimary,
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: '700',
   },
   pairText: {
     color: COLORS.textPrimary,
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: '600',
     marginRight: 8,
   },
   badge: {
-    paddingVertical: 2,
-    paddingHorizontal: 8,
+    paddingVertical: 3,
+    paddingHorizontal: 10,
     borderRadius: 4,
     marginRight: 6,
   },
   longBadge: {
-    backgroundColor: COLORS.primary,
+    backgroundColor: '#00D26A',
   },
   shortBadge: {
     backgroundColor: COLORS.secondary,
   },
   badgeText: {
     color: COLORS.textPrimary,
-    fontSize: 10,
+    fontSize: 11,
     fontWeight: '600',
   },
   leverageBadge: {
     backgroundColor: COLORS.inputBackground,
-    paddingVertical: 2,
-    paddingHorizontal: 6,
+    paddingVertical: 3,
+    paddingHorizontal: 8,
     borderRadius: 4,
   },
   leverageText: {
     color: COLORS.textSecondary,
-    fontSize: 10,
+    fontSize: 11,
     fontWeight: '500',
   },
   row: {
@@ -72,15 +72,15 @@ export const styles = StyleSheet.create({
   },
   label: {
     color: COLORS.textSecondary,
-    fontSize: 11,
+    fontSize: 12,
   },
   value: {
     color: COLORS.textPrimary,
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: '500',
   },
   profitValue: {
-    color: COLORS.primary,
+    color: '#00D26A',
   },
   lossValue: {
     color: COLORS.secondary,

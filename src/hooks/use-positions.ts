@@ -18,6 +18,7 @@ interface UsePositionsReturn {
   handlePositionPress: (position: Position) => void;
   handleCloseModal: () => void;
   handleCancelPosition: (positionId: string) => void;
+  handleCancelAllPositions: () => void;
   toggleHideOtherPairs: () => void;
 }
 
@@ -52,6 +53,12 @@ export function usePositions(): UsePositionsReturn {
     setHideOtherPairs(prev => !prev);
   }, []);
 
+  const handleCancelAllPositions = useCallback(() => {
+    // Handle cancellation of all positions
+    console.log('Cancelling all positions');
+    // In a real app, this would call an API to cancel all positions
+  }, []);
+
   return {
     positions,
     activeTab,
@@ -63,6 +70,7 @@ export function usePositions(): UsePositionsReturn {
     handlePositionPress,
     handleCloseModal,
     handleCancelPosition,
+    handleCancelAllPositions,
     toggleHideOtherPairs,
   };
 }

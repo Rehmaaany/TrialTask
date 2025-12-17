@@ -18,6 +18,7 @@ interface UsePositionsReturn {
   handlePositionPress: (position: Position) => void;
   handleCloseModal: () => void;
   handleCancelPosition: (positionId: string) => void;
+  handleCancelPositionFromCard: (position: Position) => void;
   handleCancelAllPositions: () => void;
   toggleHideOtherPairs: () => void;
 }
@@ -49,6 +50,12 @@ export function usePositions(): UsePositionsReturn {
     handleCloseModal();
   }, [handleCloseModal]);
 
+  const handleCancelPositionFromCard = useCallback((position: Position) => {
+    // Handle position cancellation from position card
+    console.log('Cancelling position from card:', position.id);
+    // In a real app, this would call an API to cancel the position
+  }, []);
+
   const toggleHideOtherPairs = useCallback(() => {
     setHideOtherPairs(prev => !prev);
   }, []);
@@ -70,6 +77,7 @@ export function usePositions(): UsePositionsReturn {
     handlePositionPress,
     handleCloseModal,
     handleCancelPosition,
+    handleCancelPositionFromCard,
     handleCancelAllPositions,
     toggleHideOtherPairs,
   };

@@ -17,7 +17,7 @@ interface PositionsListProps {
   onTabChange: (tabId: TabType) => void;
   onPositionPress: (position: Position) => void;
   onToggleHideOtherPairs: () => void;
-  onCancel?: () => void;
+  onCancelPosition?: (position: Position) => void;
 }
 
 export function PositionsList({
@@ -28,7 +28,7 @@ export function PositionsList({
   onTabChange,
   onPositionPress,
   onToggleHideOtherPairs,
-  onCancel,
+  onCancelPosition,
 }: PositionsListProps) {
   return (
     <View style={styles.container}>
@@ -78,6 +78,7 @@ export function PositionsList({
               key={position.id}
               position={position}
               onPress={onPositionPress}
+              onCancel={onCancelPosition}
               showFullDetails={true}
             />
           ))
@@ -87,17 +88,6 @@ export function PositionsList({
           </View>
         )}
       </ScrollView>
-
-      {/* Cancel Button */}
-      {onCancel && positions.length > 0 && (
-        <TouchableOpacity
-          style={styles.cancelButton}
-          onPress={onCancel}
-          activeOpacity={0.8}
-        >
-          <Text style={styles.cancelButtonText}>Cancel</Text>
-        </TouchableOpacity>
-      )}
     </View>
   );
 }

@@ -85,4 +85,17 @@ export const styles = StyleSheet.create({
   lossValue: {
     color: COLORS.secondary,
   },
+  cancelButton: {
+    backgroundColor: '#F0B90B',
+    borderRadius: 8,
+    paddingVertical: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 12,
+  },
+  cancelButtonText: {
+    color: '#000000',
+    fontSize: 14,
+    fontWeight: '600',
+  },
 });

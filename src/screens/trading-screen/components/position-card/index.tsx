@@ -12,12 +12,14 @@ import { formatNumber, formatPnl, formatSize } from '../../../../utils/format.ut
 interface PositionCardProps {
   position: Position;
   onPress: (position: Position) => void;
+  onCancel?: (position: Position) => void;
   showFullDetails?: boolean;
 }
 
 export function PositionCard({
   position,
   onPress,
+  onCancel,
   showFullDetails = false,
 }: PositionCardProps) {
   const {
@@ -89,6 +91,17 @@ export function PositionCard({
             <Text style={styles.value}>{formatNumber(liqPrice)}</Text>
           </View>
         </>
+      )}
+
+      {/* Cancel Button */}
+      {onCancel && (
+        <TouchableOpacity
+          style={styles.cancelButton}
+          onPress={() => onCancel(position)}
+          activeOpacity={0.7}
+        >
+          <Text style={styles.cancelButtonText}>Cancel</Text>
+        </TouchableOpacity>
       )}
     </TouchableOpacity>
   );
